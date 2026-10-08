@@ -1,0 +1,31 @@
+* {
+font-family: "Gill Sans", "Gill Sans MT", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
+color: #000000;
+}
+body {
+background-color: #EBEBEB;
+margin: 0;
+padding: 0 0 40px 0;
+}
+h1 {
+background-color: #1E1E1E;
+color: #FFFFFF;
+font-size: 70pt;
+margin: 0;
+padding: 40px;
+}
+h2 {
+background-color: #FFCC00;
+font-size: 38pt;
+margin: 30px 40px 0 40px;
+padding: 10px 20px;
+}
+p {
+background-color: #FFFFFF;
+font-size: 18pt;
+margin: 0 40px;
+padding: 20px;
+}
+p:first-of-type {
+margin-top: 30px;
+}
