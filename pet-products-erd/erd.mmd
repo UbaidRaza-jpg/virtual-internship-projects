@@ -1,0 +1,78 @@
+erDiagram
+    Manufacturer {
+        int manufacturer_id PK
+        string name
+    }
+    Animal {
+        int animal_id PK
+        string name
+    }
+    Product {
+        int product_id PK
+        string name
+        int manufacturer_id FK
+    }
+    PetFood {
+        int product_id PK,FK
+        float weight
+        string flavor
+        string target_health_condition
+    }
+    PetToy {
+        int product_id PK,FK
+        string material
+        string durability
+    }
+    PetApparel {
+        int product_id PK,FK
+        string color
+        string size
+        string care_instructions
+    }
+    ProductAnimal {
+        int product_id PK,FK
+        int animal_id PK,FK
+    }
+    Customer {
+        int customer_id PK
+        string name
+        string email UK
+    }
+    Transaction {
+        int transaction_id PK
+        int customer_id FK
+        date transaction_date
+    }
+    TransactionItem {
+        int transaction_id PK,FK
+        int product_id PK,FK
+    }
+    Location {
+        int location_id PK
+        string name
+        string zip_code
+    }
+    Shipment {
+        int shipment_id PK
+        int origin_location_id FK
+        int destination_location_id FK
+    }
+    ShipmentItem {
+        int shipment_id PK,FK
+        int product_id PK,FK
+        int quantity
+    }
+
+    Manufacturer ||--o{ Product : "manufactures"
+    Product ||--o| PetFood : "is a"
+    Product ||--o| PetToy : "is a"
+    Product ||--o| PetApparel : "is a"
+    Product ||--o{ ProductAnimal : "has"
+    Animal ||--o{ ProductAnimal : "associated with"
+    Customer ||--o{ Transaction : "makes"
+    Transaction ||--o{ TransactionItem : "contains"
+    Product ||--o{ TransactionItem : "included_in"
+    Location ||--o{ Shipment : "origin"
+    Location ||--o{ Shipment : "destination"
+    Shipment ||--o{ ShipmentItem : "contains"
+    Product ||--o{ ShipmentItem : "included_in"

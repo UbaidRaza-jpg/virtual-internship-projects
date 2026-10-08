@@ -1,0 +1,25 @@
+.er.entityBox {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+}
+.er.attributeBoxOdd {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+}
+.er.attributeBoxEven {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+}
+.er.relationshipLabelBox {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+}
+.er.relationshipLine {
+    stroke: #000000 !important;
+}
+.er.relationshipLabel {
+    fill: #000000 !important;
+}
+text {
+    fill: #000000 !important;
+}
