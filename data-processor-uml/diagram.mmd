@@ -1,0 +1,82 @@
+classDiagram
+    %% Existing classes
+    class DataPoint {
+        <<existing>>
+    }
+    class ModeIdentifier {
+        <<enumeration>>
+        <<existing>>
+    }
+    class DatabaseIdentifier {
+        <<enumeration>>
+        <<existing>>
+    }
+
+    class Processor {
+        -currentMode : ProcessingMode
+        -currentDatabase : Database
+        +configure(mode: ModeIdentifier, database: DatabaseIdentifier) void
+        +process(dataPoint: DataPoint) void
+        -selectMode(mode: ModeIdentifier) ProcessingMode
+        -selectDatabase(database: DatabaseIdentifier) Database
+    }
+
+    class ProcessingMode {
+        <<interface>>
+        +handle(dataPoint: DataPoint, database: Database) void
+    }
+
+    class Database {
+        <<interface>>
+        +connect() void
+        +insert(dataPoint: DataPoint) void
+        +validate(dataPoint: DataPoint) boolean
+    }
+
+    class DumpMode {
+        +handle(dataPoint: DataPoint, database: Database) void
+    }
+    class PassthroughMode {
+        +handle(dataPoint: DataPoint, database: Database) void
+    }
+    class ValidateMode {
+        +handle(dataPoint: DataPoint, database: Database) void
+    }
+
+    class PostgresDatabase {
+        +connect() void
+        +insert(dataPoint: DataPoint) void
+        +validate(dataPoint: DataPoint) boolean
+    }
+    class RedisDatabase {
+        +connect() void
+        +insert(dataPoint: DataPoint) void
+        +validate(dataPoint: DataPoint) boolean
+    }
+    class ElasticDatabase {
+        +connect() void
+        +insert(dataPoint: DataPoint) void
+        +validate(dataPoint: DataPoint) boolean
+    }
+
+    %% Relationships
+    ProcessingMode <|.. DumpMode
+    ProcessingMode <|.. PassthroughMode
+    ProcessingMode <|.. ValidateMode
+
+    Database <|.. PostgresDatabase
+    Database <|.. RedisDatabase
+    Database <|.. ElasticDatabase
+
+    Processor "1" --> "1" ProcessingMode : currentMode
+    Processor "1" --> "1" Database : currentDatabase
+
+    Processor ..> ModeIdentifier
+    Processor ..> DatabaseIdentifier
+
+    ProcessingMode ..> DataPoint
+    Database ..> DataPoint
+
+    note for DataPoint "already exists"
+    note for ModeIdentifier "already exists"
+    note for DatabaseIdentifier "already exists"
