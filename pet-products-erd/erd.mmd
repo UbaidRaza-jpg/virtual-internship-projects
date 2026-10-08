@@ -64,15 +64,18 @@ erDiagram
     }
 
     Manufacturer ||--o{ Product : "manufactures"
-    Product ||--o| PetFood : "is a"
-    Product ||--o| PetToy : "is a"
-    Product ||--o| PetApparel : "is a"
-    Product ||--o{ ProductAnimal : "has"
-    Animal ||--o{ ProductAnimal : "associated with"
     Customer ||--o{ Transaction : "makes"
     Transaction ||--o{ TransactionItem : "contains"
-    Product ||--o{ TransactionItem : "included_in"
     Location ||--o{ Shipment : "origin"
     Location ||--o{ Shipment : "destination"
     Shipment ||--o{ ShipmentItem : "contains"
+
+    Product ||--o{ TransactionItem : "included_in"
     Product ||--o{ ShipmentItem : "included_in"
+
+    Animal ||--o{ ProductAnimal : "associated with"
+    Product ||--o{ ProductAnimal : "has"
+
+    Product ||--o| PetFood : "is a"
+    Product ||--o| PetToy : "is a"
+    Product ||--o| PetApparel : "is a"
